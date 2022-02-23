@@ -1,3 +1,4 @@
+<!--ca054d-3b1c32-a4d4b4-ffcf9c-b96d40-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Pet</title>
 </head>
-<body style="background-color: #bcfff4;">
+<body style="background-color: #A4D4B4;">
     
-    <!-- Button trigger modal LOGIN -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Login
-    </button>
-  
+    <div style="background-color: #3B1C32; display: flex;">
+        <div>
+            <!-- Button trigger modal LOGIN -->
+            <button onclick="window.location='page_name.php';" value="Home" class="btn btn-primary" style="background-color: black;">
+                Home
+            </button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Login
+            </button>
+            
+            <!-- Button trigger modal REGISTRAR -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Registrar
+            </button>
+        </div>
+        <div>
+            <form action="Pesquisar">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nome da Loja, Animal ou usuario">
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        O
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal LOGIN-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -45,10 +70,6 @@
 
 
 
-    <!-- Button trigger modal REGISTRAR -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        Registrar
-    </button>
   
     <!-- Modal REGISTAR -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -325,7 +346,8 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-primary">Enviar</button>
             </div>
-        </div>           
+        </div>
+
     </div>
 
     <script>
