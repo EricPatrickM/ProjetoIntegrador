@@ -5,10 +5,13 @@ const Animal = db.sequelize.define('Animal',{
         type:db.Sequelize.INTEGER,
         primaryKey: true,
     },
-    Raca:{
+    idCliente:{
         type:db.Sequelize.INTEGER,
     },
-    idCliente:{
+    Especie:{
+        type:db.Sequelize.STRING(50),
+    },
+    Raca:{
         type:db.Sequelize.INTEGER,
     },
     Nome:{ 
