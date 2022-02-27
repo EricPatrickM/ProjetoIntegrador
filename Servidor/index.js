@@ -558,9 +558,9 @@ const { Sequelize } = require("./models/db");
             VisibilidadeNumero: req.body.VisibilidadeNumero,
             VisibilidadeComplemento: req.body.VisibilidadeComplemento,
             Disponivel: true,
-            }).then((e)=> {
+            }).then(()=> {
                 //colocar telefone
-            }).catch((e)=>{
+            }).catch(()=>{
 
             }
         );
@@ -610,7 +610,8 @@ const { Sequelize } = require("./models/db");
             } else{
                 res.render("Animal", ResultadoConsulta.dataValues);
             }
-        }).catch(()=>{
+        }).catch((e)=>{
+            console.log(e);
             res.render("NotFound");
         });
     });
@@ -694,6 +695,14 @@ const { Sequelize } = require("./models/db");
     
         app.get("/Images/Logo",function(req, res){
             res.sendFile(__dirname + '/views/Images/Logo.png');
+        });
+
+        app.get("/Images/Loja",function(req, res){
+            res.sendFile(__dirname + '/views/Images/Loja.png');
+        });
+
+        app.get("/Images/Usuario",function(req, res){
+            res.sendFile(__dirname + '/views/Images/Usuario.png');
         });
 
         app.get("/Style/Menu",function(req, res){
