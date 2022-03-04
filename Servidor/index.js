@@ -705,6 +705,18 @@ const { Sequelize } = require("./models/db");
             res.sendFile(__dirname + '/views/Images/Usuario.png');
         });
 
+        app.get("/Images/Animal",function(req, res){
+            res.sendFile(__dirname + '/views/Images/Animal.png');
+        });
+
+        app.get("/Images/Produto",function(req, res){
+            res.sendFile(__dirname + '/views/Images/Produto.png');
+        });
+
+        app.get("/Images/Servico",function(req, res){
+            res.sendFile(__dirname + '/views/Images/Servico.png');
+        });
+
         app.get("/Style/Menu",function(req, res){
             res.sendFile(__dirname + '/views/Style/Menu.css');
         });

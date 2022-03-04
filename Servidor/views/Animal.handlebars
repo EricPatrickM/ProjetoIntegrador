@@ -1,27 +1,27 @@
 <body style="background-color: #240046;">
     
     <!--Cabecalho-->
-    <dir style="background-color: #6B05CF; margin:0 auto; position: relative;">
+    <!--<dir style="background-color: #6B05CF; margin:0 auto; position: relative;">
         <a href="/">
             <img src="/Images/Logo"/>
         </a>
         <div style="float: right;margin-top: 5%;">
 
-            <!-- Button trigger modal LOGIN -->
+            <!- Button trigger modal LOGIN ->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Login
             </button>
         
-            <!-- Button trigger modal REGISTRAR -->
+            <!- Button trigger modal REGISTRAR ->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 Registrar
             </button>
-            <!--Button trigger modal Menu-->
+            <!--Button trigger modal Menu->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">  
                 MENU
             </button>
         </div>
-    </dir>
+    </dir>-->
 
 
     <!-- Modal LOGIN-->
@@ -312,21 +312,22 @@
         </div>           
     </div>
 
-    <div style="text-align:center;">
-        <div style="right:0%; width: 30%; display:inline; margin-left: 10%;">
-            <span class="border border-4"></span>
-            <img src="/Images/Usuario" alt="">
-            <h1>{{Nome}}</h1>
-            <h1>{{Email}}</h1>
-            <h1>{{Numero}}</h1>
-            <h1>{{DataNascimento}}</h1>
-            <h1>{{Estado}}</h1>
-            <h1>{{Cidade}}</h1>
-            <h1>{{Bairro}}</h1>
-            <h1>{{Rua}}</h1>
+    <!--ESQUERDA-->
+    <div style="display: flex;justify-content: center;">
+        <div style="right:0%; width: 30%; display:inline; margin-left: 2%; margin-top: 2%; margin-right: 2%;">
+            <span class="border border-2" style="width: 75px">
+                <img src="/Images/Animal" alt="">
+            </span>
         </div>
+    <!--DIREITA-->
         <div style="display:inline; width: 70%; background-color: #C77DFF;">
-            <h1>*foto*</h1>
+            <h1>{{Nome}}</h1>
+            <h1>{{Especie}}</h1>
+            <h1>{{Raca}}</h1>
+            <h1>{{Cor}}</h1>
+            <h1>{{Porte}}</h1>
+            <h1>{{Status}}</h1>
+            <h1>{{Idade}}</h1>
         </div>
     </div>
 
