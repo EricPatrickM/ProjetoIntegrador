@@ -1,28 +1,28 @@
 <body style="background-color: #240046;">
     
     <!--Cabecalho-->
-    <dir style="background-color: #6B05CF; margin:0 auto; position: relative;">
+    <!--<dir style="background-color: #6B05CF; margin:0 auto; position: relative;">
         <a href="/">
             <img src="/Images/Logo"/>
         </a>
         <div style="float: right;margin-top: 5%;">
 
-            <!-- Button trigger modal LOGIN -->
+            <!- Button trigger modal LOGIN ->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Login
             </button>
         
-            <!-- Button trigger modal REGISTRAR -->
+            <!- Button trigger modal REGISTRAR ->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 Registrar
             </button>
-            <!--Button trigger modal Menu-->
+            <!-Button trigger modal Menu->
             <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 50px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">  
                 MENU
             </button>
         </div>
-    </dir>
-
+    </dir>-->
+    {{> Menu }}
 
     <!-- Modal LOGIN-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -312,44 +312,155 @@
         </div>           
     </div>
 
-    <div style="display: flex;justify-content: center;">
+    <div style="display: flex;justify-content: center; position: absolute; left: 80px;">
         <!--ESQUERDA-->
-        <div style="right:0%; width: 30%; display:inline; margin-left: 2%; margin-top: 2%; margin-right: 2%;">
+        <div style="right:0%; width: 50%; display:inline; margin-left: 2%; margin-top: 2%; margin-right: 2%;">
             <span class="border border-2" style="width: 75px">
                 <img src="/Images/Loja" alt=""/>
             </span>
             <h1>{{Nome}}</h1>
             <h1>{{Email}}</h1>
-            <h1>{{Numero}}</h1>
             <h1>{{Estado}}</h1>
             <h1>{{Cidade}}</h1>
             <h1>{{Bairro}}</h1>
             <h1>{{Rua}}</h1>
-            <h1>{{Descricao}}</h1>
+            <h1>{{Numero}}</h1>
+             <h1>{{Descricao}}</h1>
+
+            <!-- Button trigger modal Cadastro Servico-->
+            <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 30px; width: 100%" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal8">
+                Registrar Serviço
+            </button>
+
+            <!-- Modal Cadastro Serviço-->
+            <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/RegistrarAnimalEnviar" method="POST">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="NomeProduto" type="text" class="form-control" id="floatingInput" placeholder="Nome">
+                                            <label for="floatingInput">Nome</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="Descricao" type="text" class="form-control" id="floatingInput" placeholder="Descreva o item">
+                                            <label for="floatingInput">Descrição</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="Valor" type="float" class="form-control" id="floatingInput" placeholder="00">
+                                            <label for="floatingInput">Valor</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+            </div>
+            
+            <!-- Button trigger modal Cadastro Produto-->
+            <button type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 30px; padding-right:25px; padding-left:25px; width: 100%" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal9">
+                Registrar loja
+            </button>
+
+            <!-- Modal Cadastro Produto-->
+            <div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/RegistrarAnimalEnviar" method="POST">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="NomeProduto" type="text" class="form-control" id="floatingInput" placeholder="Nome">
+                                            <label for="floatingInput">Nome</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="Descricao" type="text" class="form-control" id="floatingInput" placeholder="Descreva o item">
+                                            <label for="floatingInput">Descrição</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input name="Valor" type="float" class="form-control" id="floatingInput" placeholder="00">
+                                            <label for="floatingInput">Valor</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+            </div>         
         </div>
+   </div>
       
 
         <!--DIREITA-->
-        <div style="display:inline; height: 100%; width: 70%; background-color: #C77DFF;">
+        <div style="display:inline; height: 100%; width: 50%; background-color: #C77DFF;">
             <h1>TESTE</h1>
-            <!--PRODUTO-->
+            <!--SERVIÇO-->
             
-            {{#each produtoCadastrado}}
+            {{#each servicoCadastrado}}
             <div class="card" style="width: 18rem;">
-                <a href="/Animal/{{animalCadastrado.AnimalId}}">
-                    <img src="/Images/Produto" class="card-img-top">
+                <a href="/Servico/{{servicoCadastrado.servicoId}}">
+                    <img src="/Images/Servico" class="card-img-top">
                     <div class="card-body">
                         <p class="card-text">{{Nome}}</p>
                     </div>
                 <a>
             </div>
             {{/each}}
-            <!--SERVIÇOS-->
+            <!--PRODUTO-->
             
-            {{#each servicoCadastrado}}
+            {{#each produtoCadastrado}}
             <div class="card" style="width: 18rem;">
-                <a href="/Loja/{{lojaCadastrada.LojaId}}">
-                    <img src="/Images/Servico" class="card-img-top">
+                <a href="/Produto/{{produtoCadastrada.produtoId}}">
+                    <img src="/Images/Produto" class="card-img-top">
                     <div class="card-body">
                         <p class="card-text">{{Nome}}</p>
                     </div>

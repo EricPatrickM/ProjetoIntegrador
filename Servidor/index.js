@@ -576,6 +576,10 @@ const { Sequelize } = require("./models/db");
         res.render('Login');
     });
 
+    app.get('/MinhaConta',function(req,res){
+        res.render('MinhaConta');
+    });
+
 //CLIENTE screen and json
     app.get("/Cliente/:IdCliente",function(req, res){
         const IdCliente = parseInt(req.params.IdCliente);
@@ -584,6 +588,7 @@ const { Sequelize } = require("./models/db");
             if(req.query.device=="Mobile"){
                 res.json(ResultadoConsulta);
             } else{
+                
                 res.render("Cliente", ResultadoConsulta);
             }
         }).catch(()=>{

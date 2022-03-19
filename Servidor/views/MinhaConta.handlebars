@@ -1,0 +1,15 @@
+<button onclick="pegarDadosCliente()" type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 20px; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+      <span class="nav-text" style="text-align: center;">Registrar</span>
+</button> 
+
+<script>
+    function pegarDadosCliente(){
+        const xhttp = new XMLHttpRequest();
+        //xhttp.open("POST", "/Formulario/DadosCliente", false);
+        xhttp.open("GET", "https://rickandmortyapi.com/api/character/130", true);
+        xhttp.send();
+        xhttp.onload = function(){
+            console.log(this.responseText);
+        }
+    }
+</script>
