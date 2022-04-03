@@ -1,0 +1,82 @@
+<div class="sidebar close">
+    <a href="/">
+        <div class="logo-details">
+            <img src="/Resources/Images/Logo">
+            <span class="logo_name" style="position:absolute;">
+                MeuPet
+            </span>
+        </div>
+    </a>
+
+    <ul class="nav-links">
+        <li>
+            <a href="#">
+                <span class="material-icons" style="color: #FFFFFF;">
+                    search
+                </span>
+                <span class="link_name">Pesquisar</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Pesquisar</a></li>
+            </ul>
+        </li>
+
+        {{#if logado}}
+            <li>
+                <a href="/Formulario/Conta">
+                    <span class="material-icons" style="color: #FFFFFF;">
+                        person
+                    </span>
+                    <span class="link_name">Minha conta</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Minha conta</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/Formulario/logout">
+                    <span class="material-icons">
+                        <span class="material-icons">
+                            logout
+                        </span>
+                    </span>
+                    <span class="link_name">Log out</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Log out</a></li>
+                </ul>
+            </li>
+        {{/if}}
+
+        {{#unless logado}}
+            <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    <span class="material-icons">
+                        <span class="material-icons">
+                            person_add_alt
+                        </span>
+                    </span>
+                    <span class="link_name">Registrar-se</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Registrar-se</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span class="material-icons">
+                        <span class="material-icons">
+                            login
+                        </span>
+                    </span>
+                    <span class="link_name">Login</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Login</a></li>
+                </ul>
+            </li>
+        {{/unless}}
+    </ul>
+</div>

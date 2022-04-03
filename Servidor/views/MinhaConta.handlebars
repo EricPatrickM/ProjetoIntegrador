@@ -1,15 +1,333 @@
-<button onclick="pegarDadosCliente()" type="button" style="background-color: #6B05CF; border-style: none; font-family: 'Roboto Serif'; font-size: 20px; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-      <span class="nav-text" style="text-align: center;">Registrar</span>
-</button> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+<link rel="stylesheet" href="/Resources/Style/NotFound">
+
+{{> FundoParallax}}
+
+{{> SideBar}}
+
+<section class="home-section" style="position: absolute; top:0">
+    <div class="home-content">
+        {{> Fundo}}
+
+        <div style="margin: 5%;">
+            <h1 style="text-align: center;;margin-bottom: 5%;">ALTERAR DADOS DA CONTA</h1>
+        </div>
+        
+        <div style="flex: 1; margin: 10%;">
+            <form action="/Formulario/AlterarDadosCliente" method="POST">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input value="{{Nome}}" name="Nome" type="text" class="form-control" id="floatingInput"
+                                    placeholder="Nome completo">
+                                <label for="floatingInput">Nome completo</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeNome" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <input name="Celular1" type="text" class="form-control" id="form1" placeholder="Numero" value="{{NumeroCelular1}}">
+                                <input type="text" class="form-control" id="form2" placeholder="Numero"
+                                    style="display: none;" value="{{NumeroCelular1}}">
+                                <label for="form1">Numero Celular(1)</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeNumeroCelular1" class="form-select"
+                                aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <input name="Celular2" type="text" class="form-control" id="form3" placeholder="Numero" value="{{NumeroCelular2}}">
+                                <input type="text" class="form-control" id="form4" placeholder="Numero"
+                                    style="display: none;">
+                                <label for="form1">Numero Celular(2)</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeNumeroCelular2" class="form-select"
+                                aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="date" {{#if DataNascimento}}value="{{DataNascimento}}"{{/if}} name="DataNascimento" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Data de nascimento</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeDataNascimento" class="form-select"
+                                aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <select name="Estado" class="form-select" aria-label="Default select example">
+                                <option value="null" {{FormIgualEstado Estado "null"}}>Estado</option>
+                                <option value="AC" {{FormIgualEstado Estado "AC"}}>AC</option>
+                                <option value="AL" {{FormIgualEstado Estado "AL"}}>AL</option>
+                                <option value="AM" {{FormIgualEstado Estado "AM"}}>AM</option>
+                                <option value="AP" {{FormIgualEstado Estado "AP"}}>AP</option>
+                                <option value="BA" {{FormIgualEstado Estado "BA"}}>BA</option>
+                                <option value="CE" {{FormIgualEstado Estado "CE"}}>CE</option>
+                                <option value="DF" {{FormIgualEstado Estado "DF"}}>DF</option>
+                                <option value="ES" {{FormIgualEstado Estado "ES"}}>ES</option>
+                                <option value="GO" {{FormIgualEstado Estado "GO"}}>GO</option>
+                                <option value="MA" {{FormIgualEstado Estado "MA"}}>MA</option>
+                                <option value="MG" {{FormIgualEstado Estado "MG"}}>MG</option>
+                                <option value="MS" {{FormIgualEstado Estado "MS"}}>MS</option>
+                                <option value="MT" {{FormIgualEstado Estado "MT"}}>MT</option>
+                                <option value="PA" {{FormIgualEstado Estado "PA"}}>PA</option>
+                                <option value="PB" {{FormIgualEstado Estado "PB"}}>PB</option>
+                                <option value="PE" {{FormIgualEstado Estado "PE"}}>PE</option>
+                                <option value="PI" {{FormIgualEstado Estado "PI"}}>PI</option>
+                                <option value="PR" {{FormIgualEstado Estado "PR"}}>PR</option>
+                                <option value="RJ" {{FormIgualEstado Estado "RJ"}}>RJ</option>
+                                <option value="RN" {{FormIgualEstado Estado "RN"}}>RN</option>
+                                <option value="RO" {{FormIgualEstado Estado "RO"}}>RO</option>
+                                <option value="RR" {{FormIgualEstado Estado "RR"}}>RR</option>
+                                <option value="RS" {{FormIgualEstado Estado "RS"}}>RS</option>
+                                <option value="SC" {{FormIgualEstado Estado "SC"}}>SC</option>
+                                <option value="SE" {{FormIgualEstado Estado "SE"}}>SE</option>
+                                <option value="SP" {{FormIgualEstado Estado "SP"}}>SP</option>
+                                <option value="TO" {{FormIgualEstado Estado "TO"}}>TO</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeEstado" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="Cidade" class="form-control" id="floatingInput"
+                                    placeholder="Cidade" value="{{Cidade}}">
+                                <label for="floatingInput">Cidade</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeCidade" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="Bairro" class="form-control" id="floatingInput"
+                                    placeholder="Bairro" value="{{Bairro}}">
+                                <label for="floatingInput">Bairro</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeBairro" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="Rua" class="form-control" id="floatingInput" 
+                                placeholder="Rua" value="{{Rua}}">
+                                <label for="floatingInput">Rua</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeRua" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="Numero" class="form-control" id="floatingInput"
+                                    placeholder="Numero" value="{{Numero}}">
+                                <label for="floatingInput">Numero</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeNumero" class="form-select" aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="Complemento" class="form-control" id="floatingInput"
+                                    placeholder="Complemento" value="{{Complemento}}">
+                                <label for="floatingInput">Complemento</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select name="VisibilidadeComplemento" class="form-select"
+                                aria-label="Default select example">
+                                <option value="0">Publico</option>
+                                <option value="1">Apenas com o codigo</option>
+                                <option selected="selected" value="2">Privado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" onclick="location.reload()" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+</section>
 
 <script>
-    function pegarDadosCliente(){
-        const xhttp = new XMLHttpRequest();
-        //xhttp.open("POST", "/Formulario/DadosCliente", false);
-        xhttp.open("GET", "https://rickandmortyapi.com/api/character/130", true);
-        xhttp.send();
-        xhttp.onload = function(){
-            console.log(this.responseText);
-        }
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>
+
+{{#unless logado}}
+<script>
+    $("input[id='form1']").on("input", function () {
+        $("input[id='form2']").val(destroyMask(this.value));
+        this.value = createMask($("input[id='form2']").val());
+    })
+
+    $("input[id='form3']").on("input", function () {
+        $("input[id='form4']").val(destroyMask(this.value));
+        this.value = createMask($("input[id='form4']").val());
+    })
+
+    $("#formteste").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        console.log('entrou')
+        var actionUrl = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+    });
+
+    function createMask(string) {
+        console.log(string + " " + parseInt(string.length))
+        if (string.length >= 11)
+            return string.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, "($1) $2 $3-$4");
+        return string.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+    }
+
+    function destroyMask(string) {
+        console.log(string)
+        return string.replace(/\D/g, '').substring(0, 11);
     }
 </script>
+{{/unless}}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>
+
+<script>
+    // Parallax Code
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+</script>
+
+{{#if logado}}
+<script>
+    function getQRCodeNumber() {
+        $.ajax({
+            url: "/Formulario/QRCode?device=Mobile", success: function (result) {
+                console.log(result)
+                navigator.clipboard.writeText(result);
+            }
+        });
+    }
+</script>
+{{/if}}

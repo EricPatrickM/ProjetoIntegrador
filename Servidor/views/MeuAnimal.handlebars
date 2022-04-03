@@ -1,0 +1,213 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+<link rel="stylesheet" href="/Resources/Style/NotFound">
+
+{{> FundoParallax}}
+
+{{> SideBar}}
+
+<section class="home-section" style="position: absolute; top:0">
+    <div class="home-content">
+        {{> Fundo}}
+
+        <div style="margin-top: 5%;text-align: center">
+            <form action="/Formulario/DesativarPerfilAnimal" method="POST">
+                <input style="visibility: hidden;" value="{{IdAnimal}}" name="IdAnimal">
+                <br>
+                <button type="submit" style="background-color: red;" class="btn btn-primary btn-lg">
+                    <a>
+                        Deletar animal
+                    </a>
+                </button>
+            </form>
+        </div>
+
+        <div style="margin: 5%;">
+            <h1 style="text-align: center;;margin-bottom: 5%;">ALTERAR DADOS DO ANIMAL</h1>
+        </div>
+
+        <div style="flex: 1; margin: 10%;">
+            <form action="/Formulario/AlterarDadosAnimal" method="POST">
+                <input name="IdAnimal" value="{{IdAnimal}}" hidden="true">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input name="Nome" type="text" value="{{Nome}}" class="form-control" id="floatingInput"
+                                    placeholder="Nome">
+                                <label for="floatingInput">Nome</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="Especie" value="{{Especie}}" name="Especie" class="form-control" id="floatingInput"
+                                    placeholder="Especie">
+                                <label for="floatingInput">Especie</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" value="{{Raca}}" name="Raca" class="form-control" id="floatingInput"
+                                    placeholder="Raça">
+                                <label for="floatingInput">Raca</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <input name="Cor" type="text" class="form-control" id="form1" placeholder="Cor" value="{{Cor}}">
+                                <label for="form1">Cor</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select name="Porte" class="form-select" aria-label="Default select example">
+                                    <option value="null" {{FormIgualEstado Porte "null"}}>Porte</option>
+                                    <option value="Pequeno" {{FormIgualEstado Porte "Pequeno"}}>Pequeno</option>
+                                    <option value="Medio" {{FormIgualEstado Porte "Medio"}}>Médio</option>
+                                    <option value="Grande" {{FormIgualEstado Porte "Grande"}}>Grande</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select name="Status" class="form-select" aria-label="Default select example">
+                                    <option value="null" {{FormIgualEstado Porte "null"}}>Status</option>
+                                    <option value="Padrao" {{FormIgualEstado Porte "Padrao"}}>Padrão</option>
+                                    <option value="Perdido" {{FormIgualEstado Porte "Perdido"}}>Animal perdido</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="date" name="DataNascimento" class="form-control" id="floatingInput">
+                                <label for="floatingInput">Data de nascimento</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+</section>
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>
+
+{{#unless logado}}
+<script>
+    $("input[id='form1']").on("input", function () {
+        $("input[id='form2']").val(destroyMask(this.value));
+        this.value = createMask($("input[id='form2']").val());
+    })
+
+    $("input[id='form3']").on("input", function () {
+        $("input[id='form4']").val(destroyMask(this.value));
+        this.value = createMask($("input[id='form4']").val());
+    })
+
+    $("#formteste").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        console.log('entrou')
+        var actionUrl = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+    });
+
+    function createMask(string) {
+        console.log(string + " " + parseInt(string.length))
+        if (string.length >= 11)
+            return string.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, "($1) $2 $3-$4");
+        return string.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+    }
+
+    function destroyMask(string) {
+        console.log(string)
+        return string.replace(/\D/g, '').substring(0, 11);
+    }
+</script>
+{{/unless}}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>
+
+<script>
+    // Parallax Code
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+</script>
+
+{{#if logado}}
+<script>
+    function getQRCodeNumber() {
+        $.ajax({
+            url: "/Formulario/QRCode?device=Mobile", success: function (result) {
+                console.log(result)
+                navigator.clipboard.writeText(result);
+            }
+        });
+    }
+</script>
+{{/if}}

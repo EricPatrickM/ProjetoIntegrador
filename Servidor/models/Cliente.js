@@ -20,7 +20,7 @@ const Cliente = db.sequelize.define('Cliente',{
         type: db.Sequelize.DATE,
     },
     CodigoAcesso:{
-        type: db.Sequelize.STRING(70),
+        type: db.Sequelize.STRING(64),
     },
     Administrador:{
         type:db.Sequelize.BOOLEAN,
@@ -29,7 +29,7 @@ const Cliente = db.sequelize.define('Cliente',{
         type: db.Sequelize.STRING(2),
     },
     Cidade:{
-        type: db.Sequelize.STRING(30),
+        type: db.Sequelize.STRING(40),
     },
     Bairro:{
         type: db.Sequelize.STRING(40),
@@ -41,7 +41,7 @@ const Cliente = db.sequelize.define('Cliente',{
         type: db.Sequelize.INTEGER,
     },
     Complemento:{
-        type: db.Sequelize.STRING(50),
+        type: db.Sequelize.STRING(100),
     },
     VisibilidadeNome:{
         type: db.Sequelize.ENUM('0','1','2'),
@@ -68,6 +68,12 @@ const Cliente = db.sequelize.define('Cliente',{
         type: db.Sequelize.ENUM('0','1','2'),
     },
     VisibilidadeComplemento:{
+        type: db.Sequelize.ENUM('0','1','2'),
+    },
+    VisibilidadeNumeroCelular1:{
+        type: db.Sequelize.ENUM('0','1','2'),
+    },
+    VisibilidadeNumeroCelular2:{
         type: db.Sequelize.ENUM('0','1','2'),
     },
     Disponivel:{

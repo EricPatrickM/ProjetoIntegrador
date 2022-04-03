@@ -12,13 +12,13 @@ const Animal = db.sequelize.define('Animal',{
         type:db.Sequelize.STRING(50),
     },
     Raca:{
-        type:db.Sequelize.INTEGER,
+        type:db.Sequelize.STRING(50),
     },
     Nome:{ 
         type:db.Sequelize.STRING(50),
     },
     Cor:{
-        type:db.Sequelize.STRING(15),
+        type:db.Sequelize.STRING(30),
     },
     Porte:{
         type:db.Sequelize.ENUM("Pequeno", "Medio", "Grande"),
@@ -26,12 +26,15 @@ const Animal = db.sequelize.define('Animal',{
     Status:{
         type:db.Sequelize.ENUM("Padrao","Perdido","Vende-se"),
     },
-    Idade:{
+    DataNascimento:{
         type:db.Sequelize.INTEGER,
     },
     Valor: {
         type:db.Sequelize.DOUBLE
     },
+    Disponivel:{
+        type: db.Sequelize.BOOLEAN,
+    }
 },{
     freezeTableName: true,
     timestamps: false,

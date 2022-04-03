@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const Estado = db.sequelize.define('ImagemAnimal',{
+const Estado = db.sequelize.define('Estado',{
     Sigla:{
         type:db.Sequelize.STRING(2),
         primaryKey:true,
@@ -15,4 +15,4 @@ const Estado = db.sequelize.define('ImagemAnimal',{
     updatedAt: false,
 });
 
-module.exports = Animal
+module.exports = Estado

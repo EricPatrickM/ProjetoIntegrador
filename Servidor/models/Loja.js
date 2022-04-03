@@ -15,13 +15,13 @@ const Loja = db.sequelize.define('Loja',{
         type:db.Sequelize.INTEGER,
     },
     Estado:{
-        type: db.Sequelize.STRING(20),
+        type: db.Sequelize.STRING(2),
     },
     Cidade:{
-        type: db.Sequelize.STRING(30),
+        type: db.Sequelize.STRING(40),
     },
     Bairro: {
-        type: db.Sequelize.STRING(30),
+        type: db.Sequelize.STRING(40),
     },
     Rua: {
         type: db.Sequelize.STRING(50)
@@ -30,7 +30,7 @@ const Loja = db.sequelize.define('Loja',{
         type: db.Sequelize.INTEGER,
     },
     Complemento:{
-        type:db.Sequelize.STRING(50)
+        type:db.Sequelize.STRING(100)
     },
     Email: {
         type:db.Sequelize.STRING(50),
@@ -38,6 +38,9 @@ const Loja = db.sequelize.define('Loja',{
     Descricao:{
         type: db.Sequelize.STRING(200),
     },
+    Disponivel:{
+        type: db.Sequelize.BOOLEAN,
+    }
 },{
     freezeTableName: true,
     timestamps: false,

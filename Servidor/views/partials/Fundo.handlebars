@@ -1,0 +1,435 @@
+<i class='bx bx-menu'></i>
+{{#unless logado}}
+<!-- Modal LOGIN-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/Cliente/LoginEnviar" method="post">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="Email" name="Email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Senha</label>
+                        <input type="password" name="Senha" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <!--<a href="/EsqueciMinhaSenha">Esqueci minha senha</a>-->
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal REGISTAR -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/Cliente/RegistrarEnviar" method="POST">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input name="Nome" type="text" class="form-control" id="floatingInput"
+                                        placeholder="Nome completo">
+                                    <label for="floatingInput">Nome completo(*)</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeNome" class="form-select" aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="Email" class="form-control" id="floatingInput"
+                                        placeholder="Email">
+                                    <label for="floatingInput">Email(*)</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeEmail" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="password" name="Senha" class="form-control" id="floatingInput"
+                                        placeholder="Senha">
+                                    <label for="floatingInput">Senha(*)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input name="Celular1" type="text" class="form-control" id="form1"
+                                        placeholder="Numero">
+                                    <input type="text" class="form-control" id="form2" placeholder="Numero"
+                                        style="display: none;">
+                                    <label for="form1">Numero</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeNumeroCelular1" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input name="Celular2" type="text" class="form-control" id="form3"
+                                        placeholder="Numero">
+                                    <input type="text" class="form-control" id="form4" placeholder="Numero"
+                                        style="display: none;">
+                                    <label for="form1">Numero</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeNumeroCelular2" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <label for="exampleFormControlTextarea1" class="form-label">Data de
+                                Nascimento</label>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="date" name="DataNascimento" class="form-control" id="floatingInput"
+                                        placeholder="name@example.com">
+                                    <label for="floatingInput">Data de nascimento</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeDataNascimento" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <label for="exampleFormControlTextarea1" class="form-label">Estado</label>
+                            <div class="col">
+                                <select name="Estado" class="form-select" aria-label="Default select example">
+                                    <option selected="selected" value="NULL">Campo vazio</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AM">AM</option>
+                                    <option value="AP">AP</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MG">MG</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="PR">PR</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="RS">RS</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SE">SE</option>
+                                    <option value="SP">SP</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeEstado" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Cidade" class="form-control" id="floatingInput"
+                                        placeholder="Cidade">
+                                    <label for="floatingInput">Cidade</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeCidade" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Bairro" class="form-control" id="floatingInput"
+                                        placeholder="Bairro">
+                                    <label for="floatingInput">Bairro</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeBairro" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Rua" class="form-control" id="floatingInput"
+                                        placeholder="Rua">
+                                    <label for="floatingInput">Rua</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeRua" class="form-select" aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Numero" class="form-control" id="floatingInput"
+                                        placeholder="Numero">
+                                    <label for="floatingInput">Numero</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeNumero" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Complemento" class="form-control" id="floatingInput"
+                                        placeholder="Complemento">
+                                    <label for="floatingInput">Complemento</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <select name="VisibilidadeComplemento" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="0">Publico</option>
+                                    <option value="1">Apenas com o codigo</option>
+                                    <option selected="selected" value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{/unless}}
+
+{{#if logado}}
+
+<!-- MODAL ADICIONAR ANIMAL -->
+<div class="modal fade" id="ModalAdicionarAnimal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar animal</h5>
+            </div>
+            <div class="modal-body">
+                <form action="/Formulario/AdicionarAnimal" method="POST">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input name="Nome" type="text" class="form-control" id="floatingInput"
+                                        placeholder="Nome">
+                                    <label for="floatingInput">Nome</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="Especie" name="Email" class="form-control" id="floatingInput"
+                                        placeholder="Especie">
+                                    <label for="floatingInput">Especie</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="Raca" class="form-control" id="floatingInput"
+                                        placeholder="Raça">
+                                    <label for="floatingInput">Raça</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input name="Cor" type="text" class="form-control" id="form1" placeholder="Cor">
+                                    <label for="form1">Cor</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select name="Porte" class="form-select" aria-label="Default select example">
+                                        <option value="null" selected>Porte</option>
+                                        <option value="Pequeno">Pequeno</option>
+                                        <option value="Medio">Médio</option>
+                                        <option value="Grande">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select name="Status" class="form-select" aria-label="Default select example">
+                                        <option value="null" selected>Status</option>
+                                        <option value="Padrao">Padrão</option>
+                                        <option value="Perdido">Animal perdido</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="date" name="DataNascimento" class="form-control" id="floatingInput">
+                                    <label for="floatingInput">Data de nascimento</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--DESATIVAR A CONTA-->
+<div class="modal fade" id="ModalDeletarConta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tem certeza que dejesa desativar a SUA CONTA??</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/Formulario/DesativarPerfilCliente">
+                    <input type="hidden" value="{{IdCliente}}">
+                    <button type="submit">
+                        <h1 class="btn btn-primary">SIM</h1>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{/if}}

@@ -6,8 +6,11 @@ const TelefoneCliente = db.sequelize.define('TelefoneCliente',{
         primaryKey:true,
     },
 	Numero:{
-        type:db.Sequelize.STRING(15),
+        type:db.Sequelize.STRING(16),
         primaryKey:true,
+    },
+    NumeroOrdem:{
+        type: db.Sequelize.ENUM('1','2'),
     },
 },{
     freezeTableName: true,
