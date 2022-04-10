@@ -5,11 +5,108 @@
 
 {{> SideBar}}
 
+<!--MODAL ANIMAL PERDIDO-->
+<div class="modal fade" id="ModalAnimalPerdido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informações do animal perdido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/Formulario/AnimalPerdido" method="post">
+                    <input style="visibility: hidden;" value="{{IdAnimal}}" name="IdAnimal">
+                    <div class="mb-3">
+                        <div class="row">
+                            <label for="exampleFormControlTextarea1" class="form-label">Estado</label>
+                            <div class="col">
+                                <select name="Estado" class="form-select" aria-label="Default select example">
+                                    <option value="NULL" selected>Campo vazio</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AM">AM</option>
+                                    <option value="AP">AP</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MG">MG</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="PR">PR</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="RS">RS</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SE">SE</option>
+                                    <option value="SP">SP</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cidade</label>
+                        <input type="text" name="Cidade" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Bairro</label>
+                        <input type="text" name="Bairro" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Rua</label>
+                        <input type="text" name="Rua" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date" name="DataNascimento" class="form-control" id="floatingInput"
+                                placeholder="name@example.com">
+                            <label for="floatingInput">Data de nascimento</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <section class="home-section" style="position: absolute; top:0">
     <div class="home-content">
         {{> Fundo}}
 
-        <div style="margin-top: 5%;text-align: center">
+        <div style="text-align: center;visibility: {{#ComparacaoStatusBotao Status 'Perdido'}}{{/ComparacaoStatusBotao}};">
+            <br>
+            <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Animal foi perdido">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalAnimalPerdido">
+                    Animal perdido
+                </a>
+            </button>
+        </div>
+
+        <div style="text-align: center; visibility: {{#ComparacaoStatusBotao Status 'Padrao'}}{{/ComparacaoStatusBotao}};">
+            <form action="/Formulario/AnimalPadrao" method="POST">
+                <input style="visibility: hidden;" value="{{IdAnimal}}" name="IdAnimal">
+                <br>
+                <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Animal não está perdido">
+                    <a>
+                        Animal Padrao
+                    </a>
+                </button>
+            </form>
+        </div>
+
+        <div style="margin-top: 1%;text-align: center">
             <form action="/Formulario/DesativarPerfilAnimal" method="POST">
                 <input style="visibility: hidden;" value="{{IdAnimal}}" name="IdAnimal">
                 <br>
@@ -20,6 +117,7 @@
                 </button>
             </form>
         </div>
+
 
         <div style="margin: 5%;">
             <h1 style="text-align: center;;margin-bottom: 5%;">ALTERAR DADOS DO ANIMAL</h1>
@@ -84,20 +182,6 @@
                                     <option value="Pequeno" {{FormIgualEstado Porte "Pequeno"}}>Pequeno</option>
                                     <option value="Medio" {{FormIgualEstado Porte "Medio"}}>Médio</option>
                                     <option value="Grande" {{FormIgualEstado Porte "Grande"}}>Grande</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-floating">
-                                <select name="Status" class="form-select" aria-label="Default select example">
-                                    <option value="null" {{FormIgualEstado Porte "null"}}>Status</option>
-                                    <option value="Padrao" {{FormIgualEstado Porte "Padrao"}}>Padrão</option>
-                                    <option value="Perdido" {{FormIgualEstado Porte "Perdido"}}>Animal perdido</option>
                                 </select>
                             </div>
                         </div>
@@ -197,6 +281,12 @@
     // Parallax Code
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
+</script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 
 {{#if logado}}

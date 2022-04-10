@@ -9,9 +9,27 @@
     <div class="home-content">
         {{> Fundo}}
         
-        <div style="flex: 1;">
-            
-    
+        <div style="flex: 1;margin: 5%;">
+            <div style="text-align: center;">
+                <p>ANIMAIS PERDIDOS RECENTEMENTE</p>
+            </div>
+            <div style="margin: 5%;margin-top: 5%;flex: 1;text-align:center;">
+                <!--ANIMAL-->
+                <div class="card-group" style="display: grid; align-content: space-evenly;grid-template-columns: auto auto auto;
+                        gap: 10px;">
+                    {{#each Animal}}
+                        <div class="card" style="opacity: 90%;">
+                            <a href="/Animal/{{IdAnimal}}">
+                                <img src="/Resources/Images/Logo" class="card-img-top"
+                                    style="max-width: auto; max-height: 100px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{Nome}}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
     </div>
 </section>

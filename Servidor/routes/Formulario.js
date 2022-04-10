@@ -12,13 +12,16 @@ router.get('/teste/:IdCliente', (req,res)=>{
 
 router.get('/Animal/:AnimalId', (req, res)=>{
     const IdAnimal = parseInt(req.params.AnimalId);
-    Animal.findByPk(IdAnimal).then((ResultadoConsulta)=>{
+    const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
+    Animal.findOne({where:{IdAnimal:IdAnimal, IdCliente:IdCliente}}).then((ResultadoConsulta)=>{
+        console.log(ResultadoConsulta)
         if(!ResultadoConsulta || !ResultadoConsulta.dataValues.Disponivel){
             res.render('NotFound', {layout: false});
         }
         if(req.query.device=="Mobile"){
             res.json(ResultadoConsulta.dataValues);
         } else{
+            ResultadoConsulta.dataValues.logado=true
             res.render("MeuAnimal", ResultadoConsulta.dataValues);
         }
     }).catch((e)=>{
@@ -278,7 +281,6 @@ router.post('/AlterarDadosCliente', (req, res)=>{
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
     try{
         const Data=req.body.DataNascimento;
-        console.log(Data + "\n\n\n\n\n\n\n\n"+Data.length)
         if(Data == NaN || Data.length != 10)
             req.body.DataNascimento="null"
     }catch(e){
@@ -312,8 +314,6 @@ router.post('/AlterarDadosCliente', (req, res)=>{
 
 router.post('/AlterarDadosAnimal', (req,res)=>{
     try{
-        console.log(req.body)
-        console.log('entrou\n\n\n\n\n\n\n\n')
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
         const IdAnimal = parseInt(req.body.IdAnimal);
         Animal.update({
@@ -424,21 +424,18 @@ router.post('/AlterarDadosServico', (req,res)=>{
 //ANIMAL PERDIDO
 router.post('/AnimalPerdido',(req, res)=>{
     try{
-        const AnimalUpdate = Animal.create({IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente})
-        if(AnimalUpdate){
-            Perdido.create({
-                IdAnimal:req.body.IdAnimal,
+        Animal.update(
+            {Status:'Perdido'}
+            ,{where:{IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente}})
+
+        Perdido.create(
+            {   IdAnimal:req.body.IdAnimal,
                 Estado:req.body.Estado,
                 Cidade:req.body.Cidade,
                 Bairro:req.body.Bairro,
                 Rua:req.body.Rua,
-                Numero:req.body.Numero,
-                Data:req.body.Data,
-            });
-            AnimalUpdate.update({
-            Status:'Perdido',
-        })
-        }
+                Data:req.body.Data,})
+        res.redirect('/Formulario/Conta');
     }catch(e){
 
     }
@@ -446,15 +443,14 @@ router.post('/AnimalPerdido',(req, res)=>{
 
 router.post('/AnimalPadrao', (req, res)=>{
     try{
-        const AnimalUpdate = Animal.create({IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente})
-        if(AnimalUpdate){
-            Perdido.destroy({where:{IdAnimal:req.body.IdAnimal}});
-            AnimalUpdate.update({
-                Status:'Padrao',
-            })
-        }
-    }catch(e){
-
+        Animal.update(
+            {Status:'Padrao'}
+            ,{where:{IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente}})
+        
+        Perdido.destroy({where:{IdAnimal:req.body.IdAnimal}})
+        res.redirect('/Formulario/Conta');
+    } catch(e){
+        res.redirect('/Formulario/Conta');
     }
 })
 
@@ -462,6 +458,7 @@ router.post('/AnimalPadrao', (req, res)=>{
 router.post('/DesativarPerfilCliente',(req, res)=>{
     try{
         Cliente.update({Disponivel:0},{where:{IdCliente:res.locals.user.dataValues.IdCliente}})
+        res.redirect('/Formulario/Conta');
     } catch(e){
 
     }

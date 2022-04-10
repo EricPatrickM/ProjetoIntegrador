@@ -10,6 +10,7 @@ router.get('/teste', (req,res)=>{
     console.log(req._parsedOriginalUrl.pathname)
 });
 
+
 router.get('/:IdCliente',(req, res)=>{
     const IdCliente = parseInt(req.params.IdCliente);
     Cliente.findByPk(IdCliente).then((ResultadoConsulta)=>{

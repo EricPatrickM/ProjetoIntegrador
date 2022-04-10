@@ -13,7 +13,7 @@
             <div class="left-father">
                 <div style="flex:1">
                     <img id="FotoUsuario" src="/Resources/Images/Usuario" style="max-width: 350px; max-height: auto;"
-                        alt="" />
+                        alt=""/>
                 </div>
                 <div style="flex:1">
                     <p><b>Nome:</b> {{Nome}}</p>
@@ -22,7 +22,8 @@
                     <p><b>Cor:</b> {{Cor}}</p>
                     <p><b>Data de nascimento:</b> {{DataNascimento}}</p>
                     <p><b>Porte:</b> {{Porte}}</p>
-                    <p><b>Status:</b> {{Status}}</p>
+                    {{#ComparacaoStatus Status 'Perdido'}}
+                    {{/ComparacaoStatus}}
                 </div>
             </div>
         </div>

@@ -219,6 +219,126 @@ VALUES
 ('Tocantins', 'TO');
 */
 
+
+/*
+USE ProjetoIntegrador;
+
+CREATE TABLE Estado(
+    Nome VARCHAR(30) NOT NULL,
+    Sigla VARCHAR(2) NOT NULL,
+    CONSTRAINT PkEstado PRIMARY KEY (Sigla)
+);
+
+CREATE TABLE Cliente (
+    IdCliente INT NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(50),
+    Senha VARCHAR(64) NOT NULL,
+    Email VARCHAR(50) NOT NULL UNIQUE,
+    DataNascimento DATE,
+    CodigoAcesso CHAR(64) NOT NULL,
+    Administrador BOOLEAN NOT NULL DEFAULT FALSE,
+    Estado VARCHAR(2),
+    Cidade VARCHAR(40),
+    Bairro VARCHAR(40),
+    Rua VARCHAR(50),
+    Numero SMALLINT,
+    Complemento VARCHAR(100),
+    VisibilidadeNome ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeEmail ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeDataNascimento ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeEstado ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeCidade ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeBairro ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeRua ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeNumero ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeComplemento ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeNumeroCelular1 ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeNumeroCelular2 ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    Disponivel BOOLEAN NOT NULL DEFAULT TRUE,
+
+    CONSTRAINT PkCliente PRIMARY KEY (IdCliente),
+    CONSTRAINT FkClienteEstado FOREIGN KEY (Estado) 
+	REFERENCES Estado(Sigla) ON UPDATE CASCADE ON DELETE CASCADE,
+    
+    CONSTRAINT LimiteClienteCodigoAcesso CHECK (LENGTH(CodigoAcesso)=64),
+    CONSTRAINT LimiteClienteSenha CHECK (LENGTH(Senha)=64),
+    CONSTRAINT LimiteClienteNumero CHECK (Numero >= 0)
+);
+
+CREATE TABLE TelefoneCliente(
+    IdCliente INT NOT NULL,
+    NumeroOrdem ENUM('1','2') NOT NULL,
+	Numero VARCHAR(16),
+    CONSTRAINT PkTelefoneCliente PRIMARY KEY (IdCliente, NumeroOrdem),
+    CONSTRAINT FkTelefoneClienteIdCliente FOREIGN KEY (IdCliente)
+    REFERENCES Cliente(IdCliente) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Animal(
+    IdAnimal INT AUTO_INCREMENT NOT NULL,
+    IdCliente INT NOT NULL,
+    Especie VARCHAR(50),
+    Raca VARCHAR(50),
+    Nome VARCHAR(50),
+    Cor VARCHAR(30),
+    Porte ENUM("Pequeno", "Medio", "Grande"),
+    Status ENUM("Padrao","Perdido",),
+    DataNascimento Date,
+    Disponivel BOOLEAN NOT NULL DEFAULT TRUE,
+
+    CONSTRAINT PkAnimal PRIMARY KEY(IdAnimal),
+    CONSTRAINT FkAnimalIdCliente FOREIGN KEY (IdCliente) 
+    REFERENCES Cliente(IdCliente) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE Perdido (
+    IdAnimal int NOT NULL,
+    Estado VARCHAR(2),
+    Cidade VARCHAR(40),
+    Bairro VARCHAR(40),
+    Rua VARCHAR(50),
+    Data Date,
+
+    CONSTRAINT PkPerdido PRIMARY KEY (IdAnimal),
+    CONSTRAINT FkPerdidoIdAnimal FOREIGN KEY (IdAnimal)
+    REFERENCES Animal(IdAnimal) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FkPerdidoEstado FOREIGN KEY (Estado)
+    REFERENCES Estado(Sigla) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO estado (nome, sigla) 
+VALUES
+('Acre', 'AC'),
+('Alagoas', 'AL'),
+('Amazonas', 'AM'),
+('Amapá', 'AP'),
+('Bahia', 'BA'),
+('Ceará', 'CE'),
+('Distrito Federal', 'DF'),
+('Espírito Santo', 'ES'),
+('Goiás', 'GO'),
+('Maranhão', 'MA'),
+('Minas Gerais', 'MG'),
+('Mato Grosso do Sul', 'MS'),
+('Mato Grosso', 'MT'),
+('Pará', 'PA'),
+('Paraíba', 'PB'),
+('Pernambuco', 'PE'),
+('Piauí', 'PI'),
+('Paraná', 'PR'),
+('Rio de Janeiro', 'RJ'),
+('Rio Grande do Norte', 'RN'),
+('Rondônia', 'RO'),
+('Roraima', 'RR'),
+('Rio Grande do Sul', 'RS'),
+('Santa Catarina', 'SC'),
+('Sergipe', 'SE'),
+('São Paulo', 'SP'),
+('Tocantins', 'TO');
+*/
+
+
 /*
 --------------------
 *Esqueci minha senha
@@ -238,19 +358,6 @@ VALUES
 *Pegar pagina produto
 *Pegar pagina servico
 -------------------------
-Popular Banco
-Alterar dados do animal
-Alterar dados do usuario(ver data vazia e numero da casa)
-Adicionar animal
-
-Gerar Codigo de acesso
-Desativar Cliente,Loja,Animal
-Pegar pagina cliente
-Pegar pagina do animal
-Pegar pagina da loja
-Registar usuario
-qrcode
-Animal perdido
 */
 
 //EXPRESS
@@ -271,6 +378,8 @@ app.use(bodyParser.json())
 //ROTAS
 const Cliente = require('./routes/Cliente');
 const Animal = require('./routes/Animal');
+const BDAnimal = require('./models/Animal');
+const BDAnimalPerdido = require('./models/Perdido');
 //const Loja = require('./routes/Loja');
 const Resources = require('./routes/Resources');
 const Formulario = require('./routes/Formulario');
@@ -313,6 +422,22 @@ const Formulario = require('./routes/Formulario');
                     if(nome==esperado){
                         return "selected"
                     }
+                },
+                ComparacaoStatus: (nome, esperado)=>{
+                    if(nome==esperado){
+                        return '<p style="background-color: red; width: 125px;"><b>Status:</b> Perdido</p>'
+                        
+                    } else {
+                        return '<p><b>Status:</b>Padrão</p>'
+                    }
+                },
+                ComparacaoStatusBotao: (nome, esperado)=>{
+                    if(nome==esperado){
+                        return 'hidden'
+                        
+                    } else {
+                        return 'visible'
+                    }
                 }
             }
         }));
@@ -340,7 +465,27 @@ const Formulario = require('./routes/Formulario');
 //ROTAS PUBLICAS
 app.get("/", function(req, res){
     try{
-        res.render('Home')
+        BDAnimalPerdido.findAll({limit: 9}).then((ResultadoConsulta)=>{
+            let Animal = []
+            for(let i=0;i < ResultadoConsulta.length;i++){
+                BDAnimal.findOne({where:{IdAnimal:ResultadoConsulta[i].dataValues.IdAnimal}}).then((ResultadoAnimal)=>{
+                    Animal.push({IdAnimal:ResultadoConsulta[i].dataValues.IdAnimal, Nome:ResultadoAnimal.dataValues.Nome})
+                }).catch(()=>{
+
+                })
+            }
+            let Resultado = {}
+            Resultado.Animal = Animal
+            console.log(Resultado)
+            if(req.user){
+                Resultado.logado=true
+                res.render('Home', Resultado)
+            } else
+                res.render('Home', Resultado)
+        }).catch(()=>{
+    
+        })
+        
     }catch(e){
         res.render('NotFound', {layout: false});
     }
