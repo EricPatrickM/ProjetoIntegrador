@@ -282,7 +282,7 @@ CREATE TABLE Animal(
     Nome VARCHAR(50),
     Cor VARCHAR(30),
     Porte ENUM("Pequeno", "Medio", "Grande"),
-    Status ENUM("Padrao","Perdido",),
+    Status ENUM("Padrao","Perdido"),
     DataNascimento Date,
     Disponivel BOOLEAN NOT NULL DEFAULT TRUE,
 
