@@ -170,6 +170,13 @@ router.get('/Conta',(req,res)=>{
 //ADICIONAR
 router.post('/AdicionarAnimal', (req,res)=>{
     try{
+        if(!Date.parse(req.body.DataNascimento))
+            req.body.DataNascimento=null
+        console.log('DATA DE NASCIMENTO::::::::' + req.body.DataNascimento)
+    }catch(e){
+        req.body.DataNascimento=null
+    }
+    try{
         Animal.create({
             idCliente:res.locals.user.dataValues.IdCliente,
             Especie:req.body.Especie,
@@ -280,13 +287,11 @@ router.post('/AdicionarServico', (req,res)=>{
 router.post('/AlterarDadosCliente', (req, res)=>{
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
     try{
-        const Data=req.body.DataNascimento;
-        if(Data == NaN || Data.length != 10)
-            req.body.DataNascimento="null"
+        if(!Date.parse(req.body.DataNascimento))
+            req.body.DataNascimento=null
     }catch(e){
-        req.body.DataNascimento="null"
+        req.body.DataNascimento=null
     }
-    console.log(req.body.DataNascimento+"\n\n")
     Cliente.update({
         Nome:req.body.Nome,
         DataNascimento: req.body.DataNascimento,
@@ -313,6 +318,12 @@ router.post('/AlterarDadosCliente', (req, res)=>{
 
 
 router.post('/AlterarDadosAnimal', (req,res)=>{
+    try{
+        if(!Date.parse(req.body.DataNascimento))
+            req.body.DataNascimento=null
+    }catch(e){
+        req.body.DataNascimento=null
+    }
     try{
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
         const IdAnimal = parseInt(req.body.IdAnimal);

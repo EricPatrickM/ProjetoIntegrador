@@ -243,17 +243,17 @@ CREATE TABLE Cliente (
     Rua VARCHAR(50),
     Numero SMALLINT,
     Complemento VARCHAR(100),
-    VisibilidadeNome ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeEmail ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeDataNascimento ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeEstado ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeCidade ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeBairro ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeRua ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeNumero ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeComplemento ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeNumeroCelular1 ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-    VisibilidadeNumeroCelular2 ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+    VisibilidadeNome ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeEmail ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeDataNascimento ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeEstado ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeCidade ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeBairro ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeRua ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeNumero ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeComplemento ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeNumeroCelular1 ENUM('0', '1', '2') NOT NULL DEFAULT '2',
+    VisibilidadeNumeroCelular2 ENUM('0', '1', '2') NOT NULL DEFAULT '2',
     Disponivel BOOLEAN NOT NULL DEFAULT TRUE,
 
     CONSTRAINT PkCliente PRIMARY KEY (IdCliente),
@@ -425,7 +425,7 @@ const Formulario = require('./routes/Formulario');
                 },
                 ComparacaoStatus: (nome, esperado)=>{
                     if(nome==esperado){
-                        return '<p style="background-color: red; width: 125px;"><b>Status:</b> Perdido</p>'
+                        return '<p style="background-color: #FF3D3D; width: 125px;"><b>Status:</b> Perdido</p>'
                         
                     } else {
                         return '<p><b>Status:</b>Padrão</p>'

@@ -87,6 +87,12 @@ router.post('/RegistrarEnviar', (req, res)=>{
     const SenhaCriptografada = req.body.Email + req.body.Senha;
     const DataAtual = new Date();
     const CodigoAcessoCriptografado = req.body.Email+DataAtual.getTime();
+    try{
+        if(!Date.parse(req.body.DataNascimento))
+            req.body.DataNascimento=null
+    }catch(e){
+        req.body.DataNascimento=null
+    }
     Cliente.create({
         Nome:req.body.Nome,
         Senha:crypto.createHash('sha256').update(SenhaCriptografada).digest('hex'),
