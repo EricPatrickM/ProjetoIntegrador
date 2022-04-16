@@ -18,9 +18,6 @@ const Perdido = db.sequelize.define('Perdido',{
     Rua:{
         type:db.Sequelize.STRING(50),
     },
-    Numero:{
-        type:db.Sequelize.INTEGER, 
-    },
     Data:{
         type:db.Sequelize.DATE,
     },

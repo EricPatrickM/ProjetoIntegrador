@@ -16,14 +16,31 @@
                         alt=""/>
                 </div>
                 <div style="flex:1">
+                    <button type="button" class="btn btn-secondary" value="Dono">
+                        <a href="/Cliente/{{idCliente}}">
+                            Dono
+                        </a>
+                    </button>
                     <p><b>Nome:</b> {{Nome}}</p>
                     <p><b>Especie:</b> {{Especie}}</p>
                     <p><b>Raça:</b> {{Raca}}</p>
                     <p><b>Cor:</b> {{Cor}}</p>
                     <p><b>Data de nascimento:</b> {{DataNascimento}}</p>
                     <p><b>Porte:</b> {{Porte}}</p>
-                    {{#ComparacaoStatus Status 'Perdido'}}
-                    {{/ComparacaoStatus}}
+                    {{#if infoPerdido.Estado}}
+                        <div style="background-color: #FF3D3D; width: 125px;">
+                            {{#ComparacaoStatus Status 'Perdido'}}
+                            {{/ComparacaoStatus}}
+                            <p><b>Estado:</b> {{infoPerdido.Estado}}</p>
+                            <p><b>Cidade:</b> {{infoPerdido.Cidade}}</p>
+                            <p><b>Bairro:</b> {{infoPerdido.Bairro}}</p>
+                            <p><b>Rua:</b> {{infoPerdido.Rua}}</p>
+                            <p><b>Data:</b> {{infoPerdido.Data}}</p>
+                        </div>
+                    {{else}}
+                        {{#ComparacaoStatus Status 'Perdido'}}
+                        {{/ComparacaoStatus}}
+                    {{/if}}
                 </div>
             </div>
         </div>

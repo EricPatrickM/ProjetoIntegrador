@@ -425,7 +425,7 @@ const Formulario = require('./routes/Formulario');
                 },
                 ComparacaoStatus: (nome, esperado)=>{
                     if(nome==esperado){
-                        return '<p style="background-color: #FF3D3D; width: 125px;"><b>Status:</b> Perdido</p>'
+                        return '<p><b>Status:</b> Perdido</p>'
                         
                     } else {
                         return '<p><b>Status:</b>Padrão</p>'

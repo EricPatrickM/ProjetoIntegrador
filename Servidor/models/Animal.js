@@ -30,7 +30,7 @@ const Animal = db.sequelize.define('Animal',{
         type:db.Sequelize.INTEGER,
     },
     Valor: {
-        type:db.Sequelize.DOUBLE
+        type:db.Sequelize.DOUBLE,
     },
     Disponivel:{
         type: db.Sequelize.BOOLEAN,

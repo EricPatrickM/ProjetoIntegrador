@@ -184,7 +184,6 @@ router.post('/AdicionarAnimal', (req,res)=>{
             Nome:req.body.Nome,
             Cor:req.body.Cor,
             Porte:req.body.Porte,
-            Status:req.body.Status,
             DataNascimento:req.body.DataNascimento,
             Valor:req.body.Valor,
             Disponivel:req.body.Disponivel,
@@ -470,6 +469,15 @@ router.post('/DesativarPerfilCliente',(req, res)=>{
     try{
         Cliente.update({Disponivel:0},{where:{IdCliente:res.locals.user.dataValues.IdCliente}})
         res.redirect('/Formulario/Conta');
+        try{
+            const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
+            Animal.update({
+                Disponivel:false
+            }, {where:{IdCliente:IdCliente}})
+            res.redirect('/Formulario/Conta');
+        }catch(e){
+            res.redirect('/Formulario/Conta');
+        }
     } catch(e){
 
     }
@@ -478,8 +486,6 @@ router.post('/DesativarPerfilCliente',(req, res)=>{
 
 router.post('/DesativarPerfilAnimal',(req,res)=>{
     try{
-        console.log('\n\n\n\n\n\n\n')
-        console.log(req.body)
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
         Animal.update({
             Disponivel:false
