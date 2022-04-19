@@ -45,7 +45,7 @@
                                 <div class="form-floating mb-3">
                                     <input name="Nome" type="text" class="form-control" id="floatingInput"
                                         placeholder="Nome completo">
-                                    <label for="floatingInput">Nome completo(*)</label>
+                                    <label for="floatingInput">Nome completo</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input type="email" name="Email" class="form-control" id="floatingInput"
+                                    <input type="email" pattern=".{1,40}+@{4,10}+\.com" size="30" required name="Email" class="form-control" id="floatingInput"
                                         placeholder="Email">
                                     <label for="floatingInput">Email(*)</label>
                                 </div>
@@ -82,7 +82,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input type="password" name="Senha" class="form-control" id="floatingInput"
+                                    <input type="password" pattern=".{4,}" name="Senha" class="form-control" id="floatingInput"
                                         placeholder="Senha">
                                     <label for="floatingInput">Senha(*)</label>
                                 </div>
@@ -95,10 +95,10 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <input name="Celular1" type="text" class="form-control" id="form1"
-                                        placeholder="Numero">
+                                        placeholder="Numero de telefone(1)">
                                     <input type="text" class="form-control" id="form2" placeholder="Numero"
                                         style="display: none;">
-                                    <label for="form1">Numero</label>
+                                    <label for="form1">Numero de telefone(1)</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -117,10 +117,10 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <input name="Celular2" type="text" class="form-control" id="form3"
-                                        placeholder="Numero">
+                                        placeholder="Numero de telefone(2)">
                                     <input type="text" class="form-control" id="form4" placeholder="Numero"
                                         style="display: none;">
-                                    <label for="form1">Numero</label>
+                                    <label for="form1">Numero de telefone(2)</label>
                                 </div>
                             </div>
                             <div class="col">

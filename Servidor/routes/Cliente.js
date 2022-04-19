@@ -134,7 +134,9 @@ router.post('/RegistrarEnviar', (req, res)=>{
                     IdCliente:UsuarioId,
                     Numero:req.body.Celular2,
                     NumeroOrdem: '2',
-                }).then().catch(()=>{
+                }).then(()=>{
+                    res.redirect('/')
+                }).catch(()=>{
                     res.send('Erro');
                 })
                 ).catch((e)=>{
