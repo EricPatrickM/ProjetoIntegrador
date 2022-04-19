@@ -21,6 +21,9 @@ const Perdido = db.sequelize.define('Perdido',{
     Data:{
         type:db.Sequelize.DATE,
     },
+    Recompensa:{
+        type:db.Sequelize.DOUBLE,
+    },
 },{
     freezeTableName: true,
     timestamps: false,

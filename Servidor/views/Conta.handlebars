@@ -17,6 +17,11 @@
                             alt="" />
                     </div>
                     <div style="flex:1">
+                        <a href="/Cliente/{{IdCliente}}">
+                            <button type="button" class="btn btn-secondary">
+                                Ver perfil
+                            </button>
+                        </a>
                         <p><b>Nome:</b> {{Nome}}</p>
                         <p><b>Email:</b> {{Email}}</p>
                         <p><b>Numero Celular(1):</b> {{NumeroCelular1}}</p>
@@ -54,11 +59,11 @@
                 </div>
 
                 <div style="margin-top: 5%;text-align: center">
-                    <button type="button" class="btn btn-primary btn-lg">
-                        <a href="/Formulario/MinhaConta">
-                            Alterar dados da conta
-                        </a>
-                    </button>
+                    <a href="/Formulario/MinhaConta">
+                        <button type="button" class="btn btn-primary btn-lg">
+                                Alterar dados da conta
+                        </button>
+                    </a>
 
                     <button type="button" class="btn btn-primary btn-lg">
                         <a data-bs-toggle="modal" data-bs-target="#ModalAdicionarAnimal">

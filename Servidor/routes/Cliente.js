@@ -90,8 +90,11 @@ router.post('/RegistrarEnviar', (req, res)=>{
     try{
         if(!Date.parse(req.body.DataNascimento))
             req.body.DataNascimento=null
+        if(req.body.Estado=='NULL')
+            req.body.Estado=null
     }catch(e){
         req.body.DataNascimento=null
+        req.body.Estado=null
     }
     Cliente.create({
         Nome:req.body.Nome,

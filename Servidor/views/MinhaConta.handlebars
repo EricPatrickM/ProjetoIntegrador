@@ -26,9 +26,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeNome" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeNome 0}}>Publico</option>
+                                <option value="1"{{FormIgualEstado VisibilidadeNome 1}}>Apenas com o codigo</option>
+                                <option value="2"{{FormIgualEstado VisibilidadeNome 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -47,9 +47,9 @@
                         <div class="col">
                             <select name="VisibilidadeNumeroCelular1" class="form-select"
                                 aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeNumeroCelular1 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeNumeroCelular1 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeNumeroCelular1 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -68,9 +68,9 @@
                         <div class="col">
                             <select name="VisibilidadeNumeroCelular2" class="form-select"
                                 aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeNumeroCelular2 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeNumeroCelular2 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeNumeroCelular2 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -80,17 +80,16 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-3">
-                                <input type="date" {{#if DataNascimento}}value="{{DataNascimento}}"{{/if}} name="DataNascimento" class="form-control" id="floatingInput"
-                                    placeholder="name@example.com">
+                                <input type="date" {{#if DataNascimento}}value="{{DataNascimento}}"{{/if}} name="DataNascimento" class="form-control" id="floatingInput">
                                 <label for="floatingInput">Data de nascimento</label>
                             </div>
                         </div>
                         <div class="col">
                             <select name="VisibilidadeDataNascimento" class="form-select"
                                 aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeDataNascimento 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeDataNascimento 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeDataNascimento 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -132,9 +131,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeEstado" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeEstado 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeEstado 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeEstado 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -151,9 +150,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeCidade" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeCidade 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeCidade 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeCidade 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -170,9 +169,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeBairro" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeBairro 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeBairro 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeBairro 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -189,9 +188,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeRua" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeRua 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeRua 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeRua 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -208,9 +207,9 @@
                         </div>
                         <div class="col">
                             <select name="VisibilidadeNumero" class="form-select" aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeNumero 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeNumero 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeNumero 2}}>Privado</option>
                             </select>
                         </div>
                     </div>
@@ -228,9 +227,9 @@
                         <div class="col">
                             <select name="VisibilidadeComplemento" class="form-select"
                                 aria-label="Default select example">
-                                <option value="0">Publico</option>
-                                <option value="1">Apenas com o codigo</option>
-                                <option selected="selected" value="2">Privado</option>
+                                <option value="0" {{FormIgualEstado VisibilidadeComplemento 0}}>Publico</option>
+                                <option value="1" {{FormIgualEstado VisibilidadeComplemento 1}}>Apenas com o codigo</option>
+                                <option value="2" {{FormIgualEstado VisibilidadeComplemento 2}}>Privado</option>
                             </select>
                         </div>
                     </div>

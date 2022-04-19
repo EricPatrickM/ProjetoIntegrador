@@ -5,60 +5,24 @@
 
 {{> SideBar}}
 
-<!--MODAL DO ANIMAL PERDIDO-->
-<div class="modal fade" id="MaisInfo" tabindex="-1" aria-labelledby="MaisInfo" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Informações do animal perdido</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><b>Estado:</b> {{infoPerdido.Estado}}</p>
-                <p><b>Cidade:</b> {{infoPerdido.Cidade}}</p>
-                <p><b>Bairro:</b> {{infoPerdido.Bairro}}</p>
-                <p><b>Rua:</b> {{infoPerdido.Rua}}</p>
-                <p><b>Data:</b> {{infoPerdido.Data}}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <section class="home-section" style="position: absolute; top:0">
     <div class="home-content">
         {{> Fundo}}
 
         <div style="flex: 1; margin-left: 5%;margin-right: 5%;margin-top: 2%;">
             <div class="left-father">
-                <div style="flex:1">
-                    <img id="FotoUsuario" src="/Resources/Images/Usuario" style="max-width: 350px; max-height: auto;"
-                        alt=""/>
-                </div>
-                <div style="flex:1">
-                    <a href="/Cliente/{{idCliente}}">
-                        <button type="button" class="btn btn-secondary" value="Dono">
-                            Dono
-                        </button>
-                    </a>
-                    <p><b>Nome:</b> {{Nome}}</p>
-                    <p><b>Especie:</b> {{Especie}}</p>
-                    <p><b>Raça:</b> {{Raca}}</p>
-                    <p><b>Cor:</b> {{Cor}}</p>
-                    <p><b>Data de nascimento:</b> {{DataNascimento}}</p>
-                    <p><b>Porte:</b> {{Porte}}</p>
-                    {{#if infoPerdido.Estado}}
-                        <div style="width: 125px;">
-                            <div class="demo">
-                                <button style="background-color: #FF3D3D; " data-bs-toggle="modal" data-bs-target="#MaisInfo">
-                                    <p><a href="#" data-tooltip="Clique para mais informações!"><b>Status: </b>Perdido</a></p>
-                                </button>
-                            </div>
+                <div style="flex:1;">
+                    <form action="/PesquisarRed" method="POST">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">ID</span>
+                            <input name="ID" type="text" class="form-control" aria-describedby="inputGroup-sizing-lg">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="material-icons">
+                                    search
+                                </span>
+                            </button>
                         </div>
-                    {{else}}
-                        {{#ComparacaoStatus Status 'Perdido'}}
-                        {{/ComparacaoStatus}}
-                    {{/if}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -204,66 +168,3 @@
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
 </script>
-<style>
-    [data-tooltip] {
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-}
-
-/* Hide the tooltip content by default */
-[data-tooltip]:before,
-[data-tooltip]:after {
-  visibility: hidden;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Position tooltip above the element */
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 150%;
-  left: 50%;
-  margin-bottom: 5px;
-  margin-left: -80px;
-  padding: 7px;
-  width: 160px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #000;
-  background-color: hsla(0, 0%, 20%, 0.9);
-  color: #fff;
-  content: attr(data-tooltip);
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-/* Triangle hack to make tooltip look like a speech bubble */
-[data-tooltip]:after {
-  position: absolute;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -5px;
-  width: 0;
-  border-top: 5px solid #000;
-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-}
-
-/* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
-  visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-</style>

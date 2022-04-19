@@ -14,7 +14,6 @@ router.get('/Animal/:AnimalId', (req, res)=>{
     const IdAnimal = parseInt(req.params.AnimalId);
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
     Animal.findOne({where:{IdAnimal:IdAnimal, IdCliente:IdCliente}}).then((ResultadoConsulta)=>{
-        console.log(ResultadoConsulta)
         if(!ResultadoConsulta || !ResultadoConsulta.dataValues.Disponivel){
             res.render('NotFound', {layout: false});
         }
@@ -185,7 +184,6 @@ router.post('/AdicionarAnimal', (req,res)=>{
             Cor:req.body.Cor,
             Porte:req.body.Porte,
             DataNascimento:req.body.DataNascimento,
-            Valor:req.body.Valor,
             Disponivel:req.body.Disponivel,
         });
         res.redirect('/Formulario/Conta');
@@ -285,9 +283,12 @@ router.post('/AdicionarServico', (req,res)=>{
 //ALTERAR
 router.post('/AlterarDadosCliente', (req, res)=>{
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
+    console.log('ESTADO::::::::::::' + req.body.Estado)
     try{
         if(!Date.parse(req.body.DataNascimento))
             req.body.DataNascimento=null
+        if(req.body.Estado=='null')
+            req.body.Estado=null
     }catch(e){
         req.body.DataNascimento=null
     }
@@ -434,6 +435,10 @@ router.post('/AlterarDadosServico', (req,res)=>{
 //ANIMAL PERDIDO
 router.post('/AnimalPerdido',(req, res)=>{
     try{
+        req.body.Recompensa = req.body.Recompensa.replace('.','')
+        req.body.Recompensa = req.body.Recompensa.replace(",",".")
+        req.body.Recompensa = req.body.Recompensa.substring(3)
+        console.log('recompensa::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::' + req.body.Recompensa)
         Animal.update(
             {Status:'Perdido'}
             ,{where:{IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente}})
@@ -444,7 +449,8 @@ router.post('/AnimalPerdido',(req, res)=>{
                 Cidade:req.body.Cidade,
                 Bairro:req.body.Bairro,
                 Rua:req.body.Rua,
-                Data:req.body.Data,})
+                Data:req.body.Data,
+                Recompensa:req.body.Recompensa})
         res.redirect('/Formulario/Conta');
     }catch(e){
 
