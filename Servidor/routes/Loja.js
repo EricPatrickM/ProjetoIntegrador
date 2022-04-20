@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Loja = require('../models/Loja');
 
+//Visualizar uma loja -Continua no Projetointegrador 3-
 router.get("/:LojaId",function(req, res){
     const LojaId = parseInt(req.params.LojaId);
     Loja.findByPk(LojaId).then((ResultadoConsulta)=>{

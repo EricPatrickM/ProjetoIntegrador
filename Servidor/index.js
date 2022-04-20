@@ -1,3 +1,5 @@
+//Esse é o presenter
+
 //EXPRESS
 const express = require("express");
 const app = express();
@@ -135,7 +137,8 @@ app.post('/PesquisarRed',(req,res)=>{
     res.redirect('/Cliente/'+req.body.ID)
 })
 
-/*app.post('/Denunciar', ()=>{
+/* -Continua no Projetointegrador 3-
+app.post('/Denunciar', ()=>{
     try{
         const Denuncia = require("../models/Denuncia");
         Denuncia.create({
@@ -156,7 +159,7 @@ app.post('/PesquisarRed',(req,res)=>{
     //ANIMAL
     app.use('/Animal', Animal);
     
-    //Loja
+    //Loja -Continua no Projetointegrador 3-
     //app.use('/Loja', Loja);
     
     //RECURSOS NECESSARIOS

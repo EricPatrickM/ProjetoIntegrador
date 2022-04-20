@@ -6,10 +6,12 @@ const Perdido = require("../models/Perdido");
 const TelefoneCliente = require('../models/TelefoneCliente');
 const qr = require('qr-image');
 
-router.get('/teste/:IdCliente', (req,res)=>{
-    console.log(res.locals.user.dataValues.IdCliente)
-});
 
+/*
+TODAS AS AÇÕES QUE ESTAO NESSE ARQUIVO É NECESSARIO ESTAR LOGADO
+*/
+
+//Visualizar o animal(modo logado)
 router.get('/Animal/:AnimalId', (req, res)=>{
     const IdAnimal = parseInt(req.params.AnimalId);
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
@@ -24,11 +26,11 @@ router.get('/Animal/:AnimalId', (req, res)=>{
             res.render("MeuAnimal", ResultadoConsulta.dataValues);
         }
     }).catch((e)=>{
-        console.log(e);
         res.render('NotFound', {layout: false});
     });
 })
 
+//Obter a imagem do QRCode da sua conta
 router.get("/QRCode", (req, res)=>{
     try{
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
@@ -55,6 +57,7 @@ router.get("/QRCode", (req, res)=>{
     }
 });
 
+//logout
 router.get("/logout", (req, res) => {
     try{
         console.log('deslogado')
@@ -65,6 +68,7 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
+//Visualizar e editar as informações
 router.get('/MinhaConta', (req,res)=>{
     try{
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
@@ -89,17 +93,18 @@ router.get('/MinhaConta', (req,res)=>{
                         res.render("MinhaConta", ResultadoConsulta);
                     }
                 }).catch((e)=>{
-                    console.log(e)
+                    res.redirect('/');
                 })
             }
         }).catch((e)=>{
-            res.send(e);
+            res.redirect('/');
         });
     }catch(e){
 
     }
 });
 
+//Visualizar a conta do usuario com todas as informações
 router.get('/Conta',(req,res)=>{
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
     console.log(IdCliente)
@@ -166,12 +171,11 @@ router.get('/Conta',(req,res)=>{
     });
 });
 
-//ADICIONAR
+//ADICIONAR uma animal novo
 router.post('/AdicionarAnimal', (req,res)=>{
     try{
         if(!Date.parse(req.body.DataNascimento))
             req.body.DataNascimento=null
-        console.log('DATA DE NASCIMENTO::::::::' + req.body.DataNascimento)
     }catch(e){
         req.body.DataNascimento=null
     }
@@ -193,7 +197,7 @@ router.post('/AdicionarAnimal', (req,res)=>{
 });
 
 
-/*
+/* -Continua no Projetointegrador 3-
 router.post('/AdicionarAnimalLoja', (req,res)=>{
     try{
         Loja.findOne({where:{IdCliente:res.locals.user.dataValues.IdCliente, IdLoja:req.body.IdLoja}}).then((ResultadoConsulta)=>{
@@ -280,7 +284,7 @@ router.post('/AdicionarServico', (req,res)=>{
 */
 
 
-//ALTERAR
+//salva os dados do cliente no banco de dados
 router.post('/AlterarDadosCliente', (req, res)=>{
     const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
     console.log('ESTADO::::::::::::' + req.body.Estado)
@@ -316,7 +320,7 @@ router.post('/AlterarDadosCliente', (req, res)=>{
     res.redirect('/Formulario/Conta');
 });
 
-
+//Visualiza e altera os dados de uma animal
 router.post('/AlterarDadosAnimal', (req,res)=>{
     try{
         if(!Date.parse(req.body.DataNascimento))
@@ -342,7 +346,7 @@ router.post('/AlterarDadosAnimal', (req,res)=>{
     }
 });
 
-/*
+/* -Continua no Projetointegrador 3-
 router.post('/AlterarAnimalLoja', (req,res)=>{
     Loja.findOne({where:{IdCliente:res.locals.user.dataValues.IdCliente, IdLoja:req.body.IdLoja}}).then((ResultadoConsulta)=>{
         if(ResultadoConsulta){
@@ -432,13 +436,12 @@ router.post('/AlterarDadosServico', (req,res)=>{
 */
 
 
-//ANIMAL PERDIDO
+//Declara que um animal foi perdido, juntamente com o endereco que foi perdido
 router.post('/AnimalPerdido',(req, res)=>{
     try{
         req.body.Recompensa = req.body.Recompensa.replace('.','')
         req.body.Recompensa = req.body.Recompensa.replace(",",".")
         req.body.Recompensa = req.body.Recompensa.substring(3)
-        console.log('recompensa::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::' + req.body.Recompensa)
         Animal.update(
             {Status:'Perdido'}
             ,{where:{IdAnimal:req.body.IdAnimal, IdCliente:res.locals.user.dataValues.IdCliente}})
@@ -457,6 +460,7 @@ router.post('/AnimalPerdido',(req, res)=>{
     }
 });
 
+//define que o animal perdido foi encontrado
 router.post('/AnimalPadrao', (req, res)=>{
     try{
         Animal.update(
@@ -470,7 +474,7 @@ router.post('/AnimalPadrao', (req, res)=>{
     }
 })
 
-//DESATIVAR
+//Desativa a conta do usuario
 router.post('/DesativarPerfilCliente',(req, res)=>{
     try{
         Cliente.update({Disponivel:0},{where:{IdCliente:res.locals.user.dataValues.IdCliente}})
@@ -489,7 +493,7 @@ router.post('/DesativarPerfilCliente',(req, res)=>{
     }
 });
 
-
+//Desativa um animal pertencente a um usuario
 router.post('/DesativarPerfilAnimal',(req,res)=>{
     try{
         const IdCliente = parseInt(res.locals.user.dataValues.IdCliente);
@@ -503,7 +507,7 @@ router.post('/DesativarPerfilAnimal',(req,res)=>{
     }
 });
 
-/*
+/* -Continua no Projetointegrador 3-
 router.post('/DesativarPerfilLoja',(req,res)=>{
     try{
         const LojaUpdate = Animal.create({IdLoja:req.body.IdLoja})

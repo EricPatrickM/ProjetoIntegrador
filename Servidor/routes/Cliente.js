@@ -10,7 +10,7 @@ router.get('/teste', (req,res)=>{
     console.log(req._parsedOriginalUrl.pathname)
 });
 
-
+//Visualizar um perfil de um cliente
 router.get('/:IdCliente',(req, res)=>{
     const IdCliente = parseInt(req.params.IdCliente);
     Cliente.findByPk(IdCliente).then((ResultadoConsulta)=>{
@@ -76,11 +76,13 @@ router.get('/:IdCliente',(req, res)=>{
     });
 });
 
+//Realizar o login
 router.post('/LoginEnviar', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/'
 }));
 
+//Registrar um usuario
 router.post('/RegistrarEnviar', (req, res)=>{
     //revisar entrada XSS
     //Verificar se usuario ja nao existe
@@ -151,7 +153,7 @@ router.post('/RegistrarEnviar', (req, res)=>{
         );
 });
 
-//visibilidade 0=publica, 1=somente com codigo de acesso e 2= privado
+//filtrar os dados conforme a visibilidade: 0=publica, 1=somente com codigo de acesso e 2= privado
 function FiltrandoTabelaCliente(ResultadoConsulta, CodigoAcesso){
     ResultadoConsulta=FiltrandoCampoVazio(ResultadoConsulta)
     if(ResultadoConsulta.VisibilidadeNome==2){
@@ -237,7 +239,8 @@ function FiltrandoTabelaCliente(ResultadoConsulta, CodigoAcesso){
     //ResultadoConsulta=FiltrandoCampoVazio(ResultadoConsulta);
     return ResultadoConsulta;
 };
-    
+  
+//Formatar campos vazios
 function FiltrandoCampoVazio(ResultadoConsulta){
     if(ResultadoConsulta.Nome == null){
         ResultadoConsulta.Nome = "NÃO INFORMADO";
@@ -274,7 +277,8 @@ function FiltrandoCampoVazio(ResultadoConsulta){
     }
     return ResultadoConsulta
 };
-    
+
+//Filtrar entrada
 function FiltrandoEntrada(req){
     var error = []
     if (req.body.Nome.trim().length() < 8) {

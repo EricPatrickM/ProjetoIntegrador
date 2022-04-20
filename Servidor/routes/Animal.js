@@ -3,6 +3,8 @@ const router = express.Router();
 const Animal = require('../models/Animal');
 const Perdido = require('../models/Perdido');
 
+
+//Visualizar o perfil de um aninal
 router.get("/:AnimalId",(req, res)=>{
     const IdAnimal = parseInt(req.params.AnimalId);
     Animal.findByPk(IdAnimal).then((ResultadoConsulta)=>{

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+//Recursos utilizados pelo site, como imagens e estilos
+
 router.get("/Images/Logo",function(req, res){
     res.sendFile('C:/Users/Eric/Desktop/Projeto integrador/ProjetoIntegrador/Servidor/views/Images/Logo.svg');
 });
